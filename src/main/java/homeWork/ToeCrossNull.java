@@ -20,7 +20,7 @@ public class ToeCrossNull{
             boolean isSucces = field.putToken(currentToken, number);
             field.print();
             boolean isWonCombination = field.checkWinner();
-            boolean isCrossNullDraw = field.isDraw();
+            boolean isCrossNullDraw = field.isFull();
             if (isWonCombination) {
                 System.out.println("Победил игрок " + " " + currentToken);
                 break;
@@ -30,8 +30,13 @@ public class ToeCrossNull{
             }
             if (isSucces) {
                 switchToken();
+                //updateWinCombination(number);
             }
         }
+    }
+
+    private void updateWinCombination(int number) {
+
     }
 
     private void switchToken() {

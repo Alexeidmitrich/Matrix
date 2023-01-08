@@ -1,0 +1,7 @@
+get
+size
+insert last
+insert first
+insert at index
+find
+remove

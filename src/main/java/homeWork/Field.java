@@ -68,7 +68,7 @@ public class Field {
         return false;
     }
 
-    public boolean isDraw() {
+    public boolean isFull() {
         for (int i = 0; i < field.length; i++) {
             for (int j = 0; j < field[i].length; j++) {
                 if (field[i][j] == " ")
