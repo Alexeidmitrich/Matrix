@@ -18,6 +18,6 @@ public class MainMatrix {
         matrix.addMatrix(matrix1);
         matrix.print();
         System.out.println();
-        matrix1.print();
+        //matrix1.print();
     }
 }
