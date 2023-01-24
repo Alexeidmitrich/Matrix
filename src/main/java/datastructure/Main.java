@@ -32,9 +32,9 @@ public class Main {
         m.add(m3, 1);
         System.out.println(m.size());
         //C,, K, P, D,H,A,Y, B
-        m.remove(14);
-        m.add("BB");
-        //m.remove(1);
+        //m.remove(14);
+        //m.add("BB");
+        m.remove(1);
         for (int i = 0; i < m.size(); i++) {
             System.out.print(m.get(i) + ",");
         }
