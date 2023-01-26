@@ -56,11 +56,11 @@ public class MyArrayList {
         if (index == size - 1) {
             size--;
             if (size % 2 == 0) {
-                String[] newArray = new String[size/2];
+                String[] newArray = new String[size / 2];
                 for (int i = 0; i < size; i++) {
-                   if(i < index){
+                    if (i < index) {
                         newArray[i] = elements[i];
-                    } else if(i == index) {
+                    } else if (i == index) {
                         newArray[i] = elements[i + 1];
                     } else {
                         newArray[i] = elements[i - 1];
@@ -68,25 +68,37 @@ public class MyArrayList {
                     newArray[i] = elements[i];
                 }
                 this.elements = newArray;
-            } /*else {
+            } else {
                 if (size - 1 % 2 == 0) {
                     String[] newArray = new String[size / 2];
                     for (int i = 0; i < size; i++) {
-                        //for (int i = index; i < elements.length; i++) {
                         newArray[i] = elements[i];
                     }
                     this.elements = newArray;
                 }
             }
-            }*/} else {
-                for (int i = index; i < size - 1; i++) {
-                    elements[i] = elements[i + 1];
-                }
+        } else {
+            for (int i = index; i < elements.length - 1; i++) {
+                elements[i] = elements[i + 1];
+            }
                 size--;
             }
-        }
-    //}
-
+            if (size % 2 == 0) {
+                String[] newArray = new String[elements.length / 2];
+                for (int i = 0; i < size; i++) {
+                    if (i < index) {
+                        newArray[i] = elements[i];
+                    } else if (i == index) {
+                        newArray[i] = elements[i + 1];
+                    } else {
+                        newArray[i] = elements[i - 1];
+                    }
+                    newArray[i] = elements[i];
+                }
+                this.elements = newArray;
+                size--;
+            }
+    }
 
     public void add(String e, int index) {
         if (size < elements.length) {
