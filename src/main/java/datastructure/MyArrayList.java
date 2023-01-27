@@ -58,27 +58,27 @@ public class MyArrayList {
             if (size % 2 == 0) {
                 String[] newArray = new String[size / 2];
                 for (int i = 0; i < size; i++) {
-                    if (i < index) {
+                    /*if (i < index) {
                         newArray[i] = elements[i];
                     } else if (i == index) {
                         newArray[i] = elements[i + 1];
                     } else {
                         newArray[i] = elements[i - 1];
-                    }
+                    }*/
                     newArray[i] = elements[i];
                 }
                 this.elements = newArray;
             } else {
-                if (size - 1 % 2 == 0) {
+               /* if (size - 1 % 2 == 0) {
                     String[] newArray = new String[size / 2];
                     for (int i = 0; i < size; i++) {
                         newArray[i] = elements[i];
                     }
                     this.elements = newArray;
-                }
+                }*/
             }
         } else {
-            for (int i = index; i < elements.length - 1; i++) {
+            for (int i = index; i < size - 1; i++) {
                 elements[i] = elements[i + 1];
             }
                 size--;
@@ -96,7 +96,7 @@ public class MyArrayList {
                     newArray[i] = elements[i];
                 }
                 this.elements = newArray;
-                size--;
+                index--;
             }
     }
 
