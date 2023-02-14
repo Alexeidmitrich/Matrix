@@ -11,6 +11,9 @@ public class Line {
     }
 
     public double Length() {
-        return Length();
+        double dx = end.x - start.x;
+        double dy = end.y - start.y;
+        double dz = end.z - start.z;
+        return Math.round(Math.sqrt(dx * dx + dy * dy + dz * dz));
     }
 }
