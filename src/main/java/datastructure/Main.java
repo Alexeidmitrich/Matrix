@@ -1,10 +1,15 @@
 package datastructure;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 public class Main {
 
 
     public static void main(String[] args) {
-        MyArrayList m = new MyArrayList();
+        List<String> list = new LinkedList<>();
+        MyArrayList<String> m = new MyArrayList();
         m.add("D");
         m.add("A");
         m.add("C",0);
@@ -12,7 +17,7 @@ public class Main {
         m.add("H",1);
         m.add("Y", 4);
         //C,D,H,A,Y, B
-        MyArrayList m2 = new MyArrayList();
+        MyArrayList <String> m2 = new MyArrayList();
         /*m2.add("S");
         m2.add("K");
         m2.add("P");
@@ -27,7 +32,7 @@ public class Main {
         }
         System.out.println();
         //C,D,H,A,Y, B, S, K, P
-        MyArrayList m3 = new MyArrayList();
+        MyArrayList <String> m3 = new MyArrayList();
         //m3.add("w");
         //m3.add("K");
         //m.add(m3, 1);
@@ -35,8 +40,8 @@ public class Main {
         //C,, K, P, D,H,A,Y, B
         //m.remove(14);
         //m.add("BB");
-        m.remove(0);
-        m.remove(3);
+        m.remove(5);
+        m.remove(1);
         for (int i = 0; i < m.size(); i++) {
             System.out.print(m.get(i) + ",");
         }
