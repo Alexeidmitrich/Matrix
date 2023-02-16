@@ -99,7 +99,7 @@ public class MyLinkedList<E> {
         return size;
     }
 
-    private class Node<E> {
+    private static class Node<E> {
         E data;
         Node next;
 

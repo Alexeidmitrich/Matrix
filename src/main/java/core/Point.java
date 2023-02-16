@@ -17,11 +17,11 @@ public class Point extends Entity {
 
     @Override
     public String toString() {
-        return "Point{" +
-                "x=" + x +
-                ", y=" + y +
-                ", z=" + z +
-                '}';
+        return "(" +
+                "" + x +
+                ", " + y +
+                "," + z +
+                ')';
     }
 
     public void moveTo(double x, double y, double z) {
@@ -31,7 +31,7 @@ public class Point extends Entity {
     }
 
     public void moveTo(Point p) {
-       moveTo(x,y,z);
+       moveTo(p.x,p.y,p.z);
     }
 
     public static void main(String[] args) {
@@ -40,9 +40,10 @@ public class Point extends Entity {
         System.out.println(p1.distance(p2));
         p2.moveTo(4, 5, 3);
         System.out.println(p2);
-        p2.moveTo(p2);
+        p2.moveTo(p1);
         System.out.println(p2);
         Line line = new Line(p1, p2);
-        System.out.println(line.Length());
+
+        System.out.println(line.length());
     }
 }
