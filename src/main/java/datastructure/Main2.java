@@ -25,7 +25,7 @@ public class Main2 {
         list2.add("O");
         list2.add("O");
         list2.add("O");
-        list.add(list2, 0);
+        list.add(list2, 2);
         for (int i = 0; i < list.size(); i++) {
             System.out.print(list.get(i) + " ");
         }
