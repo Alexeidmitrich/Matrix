@@ -5,18 +5,18 @@ public class MyLinkedList<E> {
     private int size;
     private Node head;
 
+    private Node tail;
+
     public void add(E data) {
         Node newNode = new Node(data);
         if (head == null) {
             head = newNode;
+            tail = head;
             size++;
         } else {
-            Node tmp = head;
-             while (tmp.next != null){
-                 tmp = tmp.next;
-             }
-             tmp.next = newNode;
-             size++;
+           tail.next = newNode;
+           tail = newNode;
+            size++;
         }
     }
 

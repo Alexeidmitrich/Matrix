@@ -1,11 +1,12 @@
-package list;
+package datastructure.list;
 
 
 public class DLL <T> {
 
     protected int size;
-    private T item;
+    protected T item;
     protected Node<T> head = null;
+    protected Node<T> tail = null;
 
 
     public boolean add (T item){
@@ -15,14 +16,12 @@ public class DLL <T> {
         }else {
             if (head == null) {
                 head = newNode;
+                tail = head;
                 size++;
             } else {
-               Node tmp = head;
-                while (tmp.next != null){
-                    tmp = tmp.next;
-                }
-                tmp.next = newNode;
-                newNode.prev = tmp;
+                tail.next = newNode;
+                newNode.prev = tail;
+                tail = newNode;
                 size++;
             }
             return true;
@@ -66,14 +65,11 @@ public class DLL <T> {
         if (list == null){
             return false;
         } else {
-            Node tmp = head;
-            while (tmp.next != null) {
-                tmp = tmp.next;
+                tail.next = list.head;
+                list.head.prev = tail;
+                tail = list.tail;
+                size = size + list.size;
             }
-            tmp.next = list.head;
-            list.head.prev = tmp;
-            size = size + list.size;
-        }
         return true;
     }
 
@@ -190,14 +186,14 @@ public class DLL <T> {
             list.add("A");
             list.add("B");
             list.add("E");
-            list.add("C");
-            list.add("D");
-            list.add("F", 0);
-        /*for (int i = 0; i < list.size(); i++) {
+            //list.add("C");
+            //list.add("D");
+            //list.add("F", 0);
+        for (int i = 0; i < list.size(); i++) {
              System.out.print(list.get(i) + " ");
-            }*/
+            }
 
-        DLL <String> list2 = new DLL();
+        /*DLL <String> list2 = new DLL();
         list2.add("G");
         list2.add("H");
         list2.add("J");
@@ -211,6 +207,6 @@ public class DLL <T> {
         System.out.println();
         for (int i = 0; i < list.size(); i++) {
             System.out.print(list.get(i) + " ");
-        }
+        }*/
     }
 }

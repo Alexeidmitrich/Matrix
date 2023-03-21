@@ -1,34 +1,39 @@
-package queue;
+package datastructure.stack;
 
-public class ArrayQueue <T> implements Queue <T>{
+public class ArrayStack <T> implements Stack<T>{
 
     private T[] array;
     private int size = 0;
 
 
-    public ArrayQueue(int size){
+    public ArrayStack(int size) {
         array = (T[]) new Object[size];
     }
+
+
     @Override
-    public void enqueue(T i) {
+    public void push(T i) {
         if (size < array.length) {
             array[size] = i;
             size++;
         }
     }
 
+
     @Override
-    public T dequeue() {
-        T element = array[0];
-        size--;
-        for (int i = 0; i < size; i++)
-            array[i] = array[i + 1];
-            array[size] = null;
+    public T pop() {
+        T element = array[size - 1];
+        size --;
         return element;
     }
 
     @Override
     public boolean isEmpty() {
         return (size == 0);
+    }
+
+    @Override
+    public T peek() {
+        return array[size - 1];
     }
 }

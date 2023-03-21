@@ -1,5 +1,6 @@
-package queue;
+package datastructure.queue;
 
+import datastructure.queue.ListQueue;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -8,7 +9,7 @@ public class ListQueueTest {
 
     @Test
     public void dequeueTest(){
-        ListQueue <String> list = new ListQueue<>();
+        ListQueue<String> list = new ListQueue<>();
         Assert.assertTrue(list.isEmpty());
         list.enqueue("H");
         list.enqueue("A");

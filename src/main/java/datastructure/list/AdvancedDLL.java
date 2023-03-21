@@ -1,4 +1,4 @@
-package list;
+package datastructure.list;
 
 public class AdvancedDLL <T> extends DLL <T>{
 
@@ -18,20 +18,10 @@ public class AdvancedDLL <T> extends DLL <T>{
     }
 
     public T removeLast() {
-        if (size == 1){
-            T element = head.item;;
-            head = null;
-            size--;
-            return element;
-        }
-            Node<T> tmp = head;
-            while (tmp.next != null) {
-                tmp = tmp.next;
-            }
-            T element = tmp.item;
-            tmp = tmp.prev;
-            tmp.next = null;
-            size--;
+      T element = tail.item;
+      tail = tail.prev;
+      tail.next = null;
+      size--;
             return element;
     }
 
@@ -42,7 +32,7 @@ public class AdvancedDLL <T> extends DLL <T>{
         list.add("E");
         list.add("C");
         list.add("D");
-        list.removeFirst();
+        //list.removeFirst();
         list.removeLast();
         for (int i = 0; i < list.size(); i++) {
              System.out.print(list.get(i) + " ");

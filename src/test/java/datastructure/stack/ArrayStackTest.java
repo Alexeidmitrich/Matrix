@@ -1,10 +1,8 @@
-package stack;
+package datastructure.stack;
 
+import datastructure.stack.ArrayStack;
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.util.Arrays;
-import java.util.Optional;
 
 
 public class ArrayStackTest {
@@ -31,5 +29,13 @@ public class ArrayStackTest {
         result = arr.pop();
         Assert.assertEquals(5, result);
         Assert.assertTrue(2 == arr.peek());
+    }
+
+    @Test
+    public  void emptyStack( ){
+        ArrayStack<Integer> arr = new ArrayStack<>(6);
+        arr.pop();
+        arr.pop();
+        arr.pop();
     }
 }

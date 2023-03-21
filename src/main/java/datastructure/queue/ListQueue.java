@@ -1,6 +1,6 @@
-package queue;
+package datastructure.queue;
 
-import list.AdvancedDLL;
+import datastructure.list.AdvancedDLL;
 
 public class ListQueue <T> implements Queue <T> {
 

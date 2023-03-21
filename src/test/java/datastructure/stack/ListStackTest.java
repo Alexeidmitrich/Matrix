@@ -1,6 +1,7 @@
-package stack;
+package datastructure.stack;
 
 
+import datastructure.stack.ListStack;
 import org.junit.Assert;
 import org.junit.Test;
 

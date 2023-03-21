@@ -1,5 +1,6 @@
-package queue;
+package datastructure.queue;
 
+import datastructure.queue.ArrayQueue;
 import org.junit.Assert;
 import org.junit.Test;
 

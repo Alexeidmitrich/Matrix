@@ -1,5 +1,6 @@
-package list;
+package datastructure.list;
 
+import datastructure.list.AdvancedDLL;
 import org.junit.Assert;
 import org.junit.Test;
 

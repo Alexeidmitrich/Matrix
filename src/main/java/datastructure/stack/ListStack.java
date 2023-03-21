@@ -1,6 +1,6 @@
-package stack;
+package datastructure.stack;
 
-import list.AdvancedDLL;
+import datastructure.list.AdvancedDLL;
 
 
 public class ListStack <T> implements Stack<T> {
