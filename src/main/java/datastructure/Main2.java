@@ -10,10 +10,10 @@ public class Main2 {
         list.add("C");
         list.add("D");
         //list.add("F",0);
-        for (int i = 0; i < list.size(); i++) {
+       /*for (int i = 0; i < list.size(); i++) {
            System.out.print(list.get(i) + " ");
         }
-        /*MyLinkedList <String> list1 = new MyLinkedList();
+        MyLinkedList <String> list1 = new MyLinkedList();
         list1.add("M");
         list1.add("K");
         list1.add("L");
@@ -21,14 +21,14 @@ public class Main2 {
         /*for (int i = 0; i < list.size(); i++) {
             System.out.print(list.get(i) + " ");
         }*/
-        /*MyLinkedList <String> list2 = new MyLinkedList();
+        MyLinkedList <String> list2 = new MyLinkedList();
         list2.add("O");
         list2.add("O");
         list2.add("O");
-        list.add(list2, 2);
+        list.add(list2, 5);
         for (int i = 0; i < list.size(); i++) {
             System.out.print(list.get(i) + " ");
-        }*/
+        }
     }
 
 }

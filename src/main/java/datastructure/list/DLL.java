@@ -4,7 +4,7 @@ package datastructure.list;
 public class DLL <T> {
 
     protected int size;
-    protected T item;
+
     protected Node<T> head = null;
     protected Node<T> tail = null;
 
@@ -74,7 +74,7 @@ public class DLL <T> {
     }
 
     public boolean add(int index, DLL list) {
-        if (item == null && index > list.size) {
+        if (list == null && index > list.size) {
             return false;
         } else {
             if (index == 0) {
@@ -88,15 +88,13 @@ public class DLL <T> {
             } else {
                 int i = 0;
                 Node tmp2 = list.head;
-                while (tmp2.next != null) {
-                    tmp2 = tmp2.next;
-                }
                 Node tmp = head;
-                while (tmp.next != null && i < index -1) {
+                while (tmp.next != null && i < index - 1) {
                     tmp = tmp.next;
+                    i++;
                 }
-                tmp2.next = tmp.next;
-                tmp.next = list.head;
+                    tmp2.next = tmp.next;
+                    tmp.next = tmp2;
                 size = size + list.size;
             }
         }
@@ -189,22 +187,22 @@ public class DLL <T> {
             //list.add("C");
             //list.add("D");
             //list.add("F", 0);
-        for (int i = 0; i < list.size(); i++) {
+        /*for (int i = 0; i < list.size(); i++) {
              System.out.print(list.get(i) + " ");
-            }
+            }*/
 
-        /*DLL <String> list2 = new DLL();
-        list2.add("G");
-        list2.add("H");
+        DLL <String> list2 = new DLL();
+        //list2.add("G");
+        //list2.add("H");
         list2.add("J");
-        //list.add(0, list2);
+        list.add(3, list2);
         for (int i = 0; i < list.size(); i++) {
             System.out.print(list.get(i) + " ");
         }
         //list.remove("A");
-        list.removeByIndex(3);
+        //list.removeByIndex(3);
         //list.clear();
-        System.out.println();
+        /*System.out.println();
         for (int i = 0; i < list.size(); i++) {
             System.out.print(list.get(i) + " ");
         }*/

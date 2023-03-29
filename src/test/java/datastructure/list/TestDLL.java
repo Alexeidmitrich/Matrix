@@ -1,7 +1,6 @@
 package datastructure.list;
 
 
-import datastructure.list.DLL;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -13,7 +12,7 @@ public class TestDLL {
         DLL<String> list = new DLL<>();
         Assert.assertTrue(list.add("A"));
         Assert.assertTrue(list.add("B"));
-        Assert.assertTrue( list.add("C"));
+        Assert.assertTrue(list.add("C"));
         Assert.assertEquals("A", list.get(0));
         Assert.assertEquals("B", list.get(1));
         Assert.assertEquals("C", list.get(2));

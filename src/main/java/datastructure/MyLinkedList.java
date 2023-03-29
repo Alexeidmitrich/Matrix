@@ -74,6 +74,7 @@ public class MyLinkedList<E> {
            Node tmp = head;
            while (tmp.next != null && i < index - 1) {
                tmp = tmp.next;
+               i++;
            }
            tmp2.next = tmp.next;
            // Важно помнить? что мы работает с ссылками/ Мысообщаем  адрес? где находитсч следующий от тмп объект
