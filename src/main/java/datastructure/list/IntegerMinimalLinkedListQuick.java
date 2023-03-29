@@ -48,20 +48,18 @@ public class IntegerMinimalLinkedListQuick extends IntegerDDL{
                         i++;
                     }
                     newNode.next = tmp.next;
-                    tmp.next.prev = newNode;
                     tmp.next = newNode;
-                    newNode.prev = tmp;
-                    if (tmp.next.next != null) {
-                        if ((Integer) tmp.next.item < (Integer) tmp.item || (Integer) tmp.next.item > (Integer) tmp.next.next.item) {
+                    size++;
+                }
+                    if (head.next.next != null) {
+                        if ((Integer) head.next.item < head.item || (Integer) head.next.item > (Integer) head.next.next.item) {
                             isSorted = false;
                         }
                     } else {
-                        if ((Integer) tmp.next.item < (Integer) tmp.item) {
+                        if ((Integer) head.next.item <  head.item) {
                             isSorted = false;
                         }
                     }
-                    size++;
-                }
             }
         }
         return true;
@@ -89,7 +87,6 @@ public class IntegerMinimalLinkedListQuick extends IntegerDDL{
                     isSorted = false;
                 }
                 head = list.head;
-
                 size = size + list.size;
             } else {
                 int i = 0;
@@ -107,11 +104,11 @@ public class IntegerMinimalLinkedListQuick extends IntegerDDL{
                 size = size + list.size;
             }
                 if (head.next.next != null) {
-                    if ((Integer) list.head.next.item < head.item || (Integer) list.head.next.item > (Integer) head.next.next.item) {
+                    if (list.head.item < head.item || (Integer) list.head.next.item > (Integer) head.next.next.item) {
                         isSorted = false;
                     }
                 } else {
-                    if ((Integer) list.head.next.item < head.item) {
+                    if (list.head.item < head.item) {
                         isSorted = false;
                     }
                 }
@@ -122,6 +119,17 @@ public class IntegerMinimalLinkedListQuick extends IntegerDDL{
     @Override
     public boolean isSorted() {
          return  isSorted;
+    }
+
+    public Integer get(int index){
+        Node tmp = head;
+        int i = 0;
+        while (tmp.next != null && i < index){
+            tmp = tmp.next;
+            i++;
+        }
+        return (Integer) tmp.item;
+
     }
 
     public static void main(String[] args) {
@@ -136,7 +144,8 @@ public class IntegerMinimalLinkedListQuick extends IntegerDDL{
         IntegerMinimalLinkedListQuick list2 = new IntegerMinimalLinkedListQuick();
         list2.add(5);
         list2.add(6);
-        list.add(4,list2);
+        //list.add(4,4);
+        list.add(1,list2);
         System.out.println();
         for (int i = 0; i < list.size; i++) {
             System.out.print(list.get(i));

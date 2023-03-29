@@ -51,12 +51,12 @@ public class TestDLL {
         list2.add("F");
         list2.add("G");
         list.add(2,list2);
-        Assert.assertEquals("D", list.get(3));
-        Assert.assertEquals("F", list.get(4));
-        Assert.assertEquals("G", list.get(5));
+        Assert.assertEquals("D", list.get(2));
+        Assert.assertEquals("F", list.get(3));
+        Assert.assertEquals("G", list.get(4));
         Assert.assertEquals("A", list.get(0));
         Assert.assertEquals("B", list.get(1));
-        Assert.assertEquals("C", list.get(2));
+        Assert.assertEquals("C", list.get(5));
     }
 
     @Test

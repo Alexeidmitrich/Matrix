@@ -78,23 +78,22 @@ public class DLL <T> {
             return false;
         } else {
             if (index == 0) {
-                Node tmp2 = list.head;
-                while (tmp2.next != null) {
-                    tmp2 = tmp2.next;
-                }
-                tmp2.next = head;
+                list.tail.next = head;
                 head = list.head;
                 size = size + list.size;
             } else {
                 int i = 0;
                 Node tmp2 = list.head;
+                while (tmp2.next != null) {
+                    tmp2 = tmp2.next;
+                }
                 Node tmp = head;
                 while (tmp.next != null && i < index - 1) {
                     tmp = tmp.next;
                     i++;
                 }
-                    tmp2.next = tmp.next;
-                    tmp.next = tmp2;
+                tmp2.next = tmp.next;
+                tmp.next = list.head;
                 size = size + list.size;
             }
         }
@@ -184,8 +183,8 @@ public class DLL <T> {
             list.add("A");
             list.add("B");
             list.add("E");
-            //list.add("C");
-            //list.add("D");
+            list.add("C");
+            list.add("D");
             //list.add("F", 0);
         /*for (int i = 0; i < list.size(); i++) {
              System.out.print(list.get(i) + " ");
@@ -193,9 +192,9 @@ public class DLL <T> {
 
         DLL <String> list2 = new DLL();
         //list2.add("G");
-        //list2.add("H");
+        list2.add("H");
         list2.add("J");
-        list.add(3, list2);
+        list.add(1, list2);
         for (int i = 0; i < list.size(); i++) {
             System.out.print(list.get(i) + " ");
         }

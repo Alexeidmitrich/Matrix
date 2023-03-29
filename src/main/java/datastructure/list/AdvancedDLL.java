@@ -33,7 +33,7 @@ public class AdvancedDLL <T> extends DLL <T>{
         list.add("C");
         list.add("D");
         //list.removeFirst();
-        list.removeLast();
+        //list.removeLast();
         for (int i = 0; i < list.size(); i++) {
              System.out.print(list.get(i) + " ");
         }
