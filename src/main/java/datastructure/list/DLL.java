@@ -1,10 +1,12 @@
 package datastructure.list;
 
 
-public class DLL <T> {
+import org.w3c.dom.Node;
+
+public class DLL <T> implements Reversable, DataSortedContainer, Findable<T> {
 
     protected int size;
-
+    private boolean isSorted;
     protected Node<T> head = null;
     protected Node<T> tail = null;
 
@@ -135,12 +137,14 @@ public class DLL <T> {
             if (index == 0){
                 head = tmp.next;
             } else {
-                tmp.next = tmp.next.next;
-                tmp.next.prev = tmp;
+                if (tmp.next != null && tmp.next.next != null) {
+                    tmp.next = tmp.next.next;
+                    tmp.next.prev = tmp;
+                }
             }
             size--;
         }
-            return true;
+        return true;
     }
 
     public T get(int index){
@@ -165,6 +169,69 @@ public class DLL <T> {
 
     public int size(){
         return size;
+    }
+
+    @Override
+    public void reverse() {
+        Node reverse = null;
+        Node tmp = head;
+        while (tmp != null) {
+            Node tmp2 = tmp.next;
+            tmp.next = reverse;
+            reverse = tmp;
+            tmp = tmp2;
+        }
+        head = reverse;
+    }
+
+    @Override
+    public boolean isSorted() {
+        return isSorted;
+    }
+
+    @Override
+    public boolean find(T item) {
+        Node tmp = head;
+        int i = 0;
+        while (tmp != null) {
+            if (tmp.item.equals(item)) {
+                return true;
+            } else {
+                tmp = tmp.next;
+                i++;
+            }
+        }
+            return false;
+    }
+
+    @Override
+    public boolean find(T item, int startIndex) {
+        Node tmp = head;
+        int i = 0;
+        while (tmp != null) {
+            if (i >= startIndex && tmp.item.equals(item)) {
+                return true;
+            }else {
+                tmp = tmp.next;
+                i++;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean find(T item, int startIndex, int endIndex) {
+        Node tmp = head;
+        int i = 0;
+        while (tmp != null && i <= endIndex) {
+            if (i >= startIndex && tmp.item.equals(item)) {
+                return true;
+            }else {
+                tmp = tmp.next;
+                i++;
+            }
+        }
+        return false;
     }
 
 
@@ -201,9 +268,12 @@ public class DLL <T> {
         //list.remove("A");
         //list.removeByIndex(3);
         //list.clear();
-        /*System.out.println();
+        System.out.println();
+        list.reverse();
         for (int i = 0; i < list.size(); i++) {
             System.out.print(list.get(i) + " ");
-        }*/
+        }
+        list.find("A");
+        list.find("A", 1);
     }
 }

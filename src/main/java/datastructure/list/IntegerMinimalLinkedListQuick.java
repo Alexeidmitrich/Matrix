@@ -132,6 +132,40 @@ public class IntegerMinimalLinkedListQuick extends IntegerDDL{
 
     }
 
+    public boolean removeByIndex(int index) {
+        if (index > size) {
+            return false;
+        } else {
+            Node tmp = head;
+            int i = 0;
+            while (tmp.next != null && i < index) {
+                tmp = tmp.next;
+                i++;
+            }
+            if (index == 0){
+                head = tmp.next;
+            } else {
+                if (tmp.next != null && tmp.next.next != null) {
+                    tmp.next = tmp.next.next;
+                    tmp.next.prev = tmp;
+                }
+            }
+            size--;
+
+            tmp = head;
+            isSorted = true;
+            while (tmp.next.next != null){
+                if ((Integer)tmp.item > (Integer) tmp.next.item){
+
+                    isSorted = false;
+                    break;
+                }
+                tmp = tmp.next;
+            }
+        }
+
+        return true;
+    }
     public static void main(String[] args) {
         IntegerMinimalLinkedListQuick  list = new IntegerMinimalLinkedListQuick();
         list.add(1);

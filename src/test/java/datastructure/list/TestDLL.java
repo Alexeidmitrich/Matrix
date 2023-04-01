@@ -118,4 +118,27 @@ public class TestDLL {
         Assert.assertTrue(list.isEmpty());
     }
 
+    @Test
+    public void findTest(){
+        DLL <String> list = new DLL<>();
+        list.add("A");
+        list.add("B");
+        list.add("C");
+        list.add("D");
+        list.add("G");
+        Assert.assertTrue(list.find("A"));
+        Assert.assertTrue(list.find("A",0));
+        Assert.assertTrue(list.find("B",1));
+        Assert.assertTrue(list.find("C",2));
+        Assert.assertTrue(list.find("D",3));
+        Assert.assertTrue(list.find("G",4));
+        Assert.assertFalse(list.find("C",3));
+        Assert.assertFalse(list.find("D",4));
+        Assert.assertTrue(list.find("D",2,3));
+        Assert.assertTrue(list.find("A",0,1));
+        Assert.assertTrue(list.find("G",3,4));
+        Assert.assertFalse(list.find("C",0,1));
+        Assert.assertFalse(list.find("D",1,2));
+    }
+
 }

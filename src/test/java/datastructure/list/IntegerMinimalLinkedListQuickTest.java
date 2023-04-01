@@ -22,8 +22,11 @@ public class IntegerMinimalLinkedListQuickTest {
         Assert.assertFalse(list2.isEmpty());
         Assert.assertTrue(list.isSorted());
         Assert.assertEquals(5, list.size());
-        int result = list.get(2);
-        Assert.assertEquals(3, result);
+        int exppectedValues[] = {1, 2, 3, 4, 5};
+        for (int i = 0; i < exppectedValues.length; i++) {
+            int result = list.get(i);
+            Assert.assertEquals(exppectedValues[i], result);
+        }
     }
 
 
@@ -31,15 +34,20 @@ public class IntegerMinimalLinkedListQuickTest {
     public void addListIndex(){
         IntegerMinimalLinkedListQuick  list = new IntegerMinimalLinkedListQuick();
         list.add(1);
-        list.add(3);
+        list.add(7);
         Assert.assertFalse(list.isEmpty());
         IntegerMinimalLinkedListQuick  list2 = new IntegerMinimalLinkedListQuick();
         list2.add(2);
+        list2.add(3);
+        list2.add(6);
         list.add(1, list2);
-        Assert.assertEquals(3, list.size());
+        Assert.assertEquals(5, list.size());
         Assert.assertTrue(list.isSorted());
-        int result = list.get(1);
-        Assert.assertEquals(2, result);
+        int exppectedValues[] = {1,2,3,6,7};
+        for (int i = 0; i < exppectedValues.length; i++) {
+            int result = list.get(i);
+            Assert.assertEquals(exppectedValues[i], result);
+        }
     }
 
     @Test
@@ -51,8 +59,18 @@ public class IntegerMinimalLinkedListQuickTest {
         list.add(4);
         Assert.assertTrue(list.isSorted());
         Assert.assertFalse(list.isEmpty());
-        int result = list.get(2);
-        Assert.assertEquals(3, result);
+        int exppectedValues[] = {1, 2, 3, 4};
+        for (int i = 0; i < exppectedValues.length; i++) {
+            int result = list.get(i);
+            Assert.assertEquals(exppectedValues[i], result);
+        }
+        list.add(1);
+        // 1 2 3 4 1
+        Assert.assertFalse(list.isSorted());
+        list.removeByIndex(4);
+        // 1 2 3 4
+        Assert.assertTrue(list.isSorted());
+
     }
 
     @Test
@@ -64,8 +82,11 @@ public class IntegerMinimalLinkedListQuickTest {
         Assert.assertFalse(list.isEmpty());
         list.add(3, 2);
         Assert.assertEquals(4, list.size());
-        int result = list.get(2);
-        Assert.assertEquals(3, result);
+        int exppectedValues[] = {1, 2, 3, 4};
+        for (int i = 0; i < exppectedValues.length; i++) {
+            int result = list.get(i);
+            Assert.assertEquals(exppectedValues[i], result);
+        }
         Assert.assertTrue(list.isSorted());
     }
 
