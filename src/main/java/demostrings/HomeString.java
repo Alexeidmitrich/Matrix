@@ -6,7 +6,6 @@ public class HomeString {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-<<<<<<< HEAD
         System.out.println("Ââåäèòå ñòðîêó ");
         String str = "madam with dog";
         register(str);
@@ -17,10 +16,6 @@ public class HomeString {
     }
 
     public static void register(String str){
-=======
-        System.out.println("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÑÑ‚Ñ€Ð¾ÐºÑƒ");
-        String str = sc.nextLine();
->>>>>>> ea7f97fb3ade98c2086145e88f7200c137a63910
         System.out.println(str.toUpperCase());
         System.out.println(str.toLowerCase());
     }
