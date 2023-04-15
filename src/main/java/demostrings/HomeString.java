@@ -6,7 +6,7 @@ public class HomeString {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Введите строку");
+        System.out.println("Р’РІРµРґРёС‚Рµ СЃС‚СЂРѕРєСѓ");
         String str = sc.nextLine();
         System.out.println(str.toUpperCase());
         System.out.println(str.toLowerCase());
