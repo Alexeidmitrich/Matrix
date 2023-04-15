@@ -6,15 +6,35 @@ public class HomeString {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("¬ведите строку");
-        String str = sc.nextLine();
+        System.out.println("¬ведите строку ");
+        String str = "madam with dog";
+        register(str);
+        printWord(str);
+        findWord(str);
+        deleteFirstAndLast(str);
+        palindrome(str);
+    }
+
+    public static void register(String str){
         System.out.println(str.toUpperCase());
         System.out.println(str.toLowerCase());
-        if (str.contains("a")) {
-            System.out.println("Yes");
-        } else {
-            System.out.println("No");
+    }
+
+    public static void printWord(String str) {
+        char[] arr = str.toCharArray();
+        for (char st : arr) {
+            System.out.println((int) st);
         }
+    }
+
+    public static void findWord(String str){
+        String answer = str.contains("a")
+                ? "Yes"
+                :"No";
+        System.out.println(answer);
+    }
+
+    public static void deleteFirstAndLast(String str){
         String[] words = str.split(" ");
         for (String st : words) {
             StringBuilder str1 = new StringBuilder(st);
@@ -24,15 +44,12 @@ public class HomeString {
                 return;
             }
         }
+    }
 
-        char[] arr = str.toCharArray();
-        for (char array : arr) {
-            System.out.println(array);
-        }
+    public static void palindrome(String str){
         String[] word = str.split(" ");
-            String firstWord = word[0];
-
-            System.out.println(firstWord);
-            System.out.println(firstWord.equals(new StringBuilder(firstWord).reverse().toString()));
+        String firstWord = word[0];
+        System.out.println(firstWord);
+        System.out.println(firstWord.equals(new StringBuilder(firstWord).reverse().toString()));
     }
 }
