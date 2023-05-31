@@ -1,4 +1,4 @@
-package demostrings;
+package demo.demostrings;
 
 public class DemoString {
 
@@ -26,13 +26,13 @@ public class DemoString {
         System.out.println(h1.equals(h2));
         System.out.println();*/
 
-        /*String s3 = "eeee";
+        String s3 = "eeee";
         StringBuilder sb = new StringBuilder(s3);
-        for (int i = 0; i < 1_000; i++) {
+        for (int i = 0; i < 1_0; i++) {
             sb.append( "111");
-            System.out.println(sb.hashCode());
+            System.out.println(sb);
 
-        }
+        }/*
         StringBuilder sb1 = new StringBuilder(s3);
         sb1.insert(0, "Java ");
         System.out.println(sb1);

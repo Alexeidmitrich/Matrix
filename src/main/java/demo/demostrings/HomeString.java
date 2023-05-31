@@ -1,4 +1,4 @@
-package demostrings;
+package demo.demostrings;
 
 import java.util.Scanner;
 
@@ -7,7 +7,7 @@ public class HomeString {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("¬ведите строку ");
-        String str = "madam with dog";
+        String str = "maDam wiTh dOg";
         register(str);
         printWord(str);
         findWord(str);
