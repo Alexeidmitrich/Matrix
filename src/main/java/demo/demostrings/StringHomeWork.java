@@ -6,6 +6,8 @@ import java.nio.file.StandardCopyOption;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class StringHomeWork {
 
@@ -33,7 +35,18 @@ public class StringHomeWork {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }*/
-        readFile("plan.txt");
+        //readFile("plan.txt");
+        //readBuffered("testHomeWork","перевод строки в байты 1111111");
+        /*try {
+            fileWrite("testHomeWork","перевод строки в байты");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }*/
+        //charWrite("testHomeWork","перевод строки в байты !!!!!");
+        //bufferedWrite("testHomeWork", "перевод строки в байты !!!!!");
+        //printWrite("testHomeWork", "перевод строки в байты !!!!!+++++");
+
+        readStringAnyFormat();
     }
 
     public static boolean sumTicket(String number) {
@@ -120,12 +133,99 @@ public class StringHomeWork {
         }
     }
 
+    public static void readBuffered(String fileName, String text) {
+        File file = new File(fileName);
+        try (FileOutputStream out = new FileOutputStream(file);
+             BufferedOutputStream bos = new BufferedOutputStream(out)) {
+            bos.write(text.getBytes());
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+    public static void fileWrite(String fileName, String text) throws Exception {
+        File f = new File(fileName);
+        if (!f.exists()) {
+            f.createNewFile();
+        }
+        FileWriter fWriter = new FileWriter(f);
+        fWriter.write(text);
+        fWriter.close();
+    }
+
+    public static void charWrite(String fileName, String text) {
+        File file = new File(fileName);
+        try (CharArrayWriter cWriter = new CharArrayWriter();
+             FileWriter fw = new FileWriter(file)) {
+            cWriter.append(text);
+            fw.write(cWriter.toCharArray());
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+    public static void bufferedWrite(String fileName, String text) {
+        File file = new File(fileName);
+        try (FileWriter fw = new FileWriter(file.getAbsoluteFile());
+             BufferedWriter bw = new BufferedWriter(fw)) {
+            bw.write(text);
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+    public static void printWrite(String fileName, String text){
+        File file = new File(fileName);
+    try(PrintWriter writer = new PrintWriter(file)) {
+        writer.write(text);
+        writer.flush();
+    }catch (IOException ex) {
+        throw new RuntimeException(ex);
+    }
+}
+
+    public static void readStringAnyFormat(){
+        File file = new File("readString.txt");
+        if (file.exists()) {
+            try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+                String line;
+                String regex = "([0-9]+);([a-zA-Z]+);(^((2000|2400|2800|(19|2[0-9](0[48]|[2468][048]|[13579][26])))-02-29)" +
+                        "|(((19|2[0-9])[0-9]{2})-02-(0[1-9]|1[0-9]|2[0-8]))|(((19|2[0-9])[0-9]{2})-(0[13578]|10|12)-(0[1-9]|" +
+                        "[12][0-9]|3[01]))|(((19|2[0-9])[0-9]{2})-(0[469]|11)-(0[1-9]|[12][0-9]|30))T(2[0-3]|[01][0-9]):([0-5]" +
+                        "[0-9]):([0-5][0-9])(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})$);([0-9a-zA-Z]+)";
+                while (( line = br.readLine()) != null) {
+                    final Pattern pattern = Pattern.compile(regex, Pattern.MULTILINE);
+                    final Matcher matcher = pattern.matcher(line);
+                    if(matcher.find()) {
+                        String date = matcher.group(3);
+                        System.out.println(date);
+                        String firstGroup = matcher.group(1);
+                        System.out.println(firstGroup);
+                        String secondGroup = matcher.group(2);
+                        System.out.println(secondGroup);
+                        String lastGroup = matcher.group(4);
+                        System.out.println(lastGroup);
+                    }
+
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        else {
+            System.out.println("file doesn't exist");
+        }
+}
+
+
     public static void readFile(String fileName) {
         File file = new File(fileName);
         try (InputStream is = new FileInputStream(file)) {
             int k = is.available() / 4;
-            printByte(is, k * 2, k / 4, k);
-            printByte(is, k * 4, k / 4, k);
+            printByte(is, k * 2, k / 4);
+            System.out.printf("Доступно для чтения %d байт  \nБудем сейчас циклом %d байт\n"
+                    , is.available(), k);
+            printByte(is, k * 4, k / 4);
             System.out.printf("Доступно для чтения %d байт  \nБудем сейчас циклом %d байт\n"
                     , is.available(), k);
         } catch (FileNotFoundException e) {
@@ -135,11 +235,10 @@ public class StringHomeWork {
         }
     }
 
-    private static void printByte(InputStream is, int start, int end, int k) throws IOException {
+    private static void printByte(InputStream is, int start, int end) throws IOException {
+        int k = is.available() / 4;
         byte[] b = new byte[k];
-        start = k * start;
-        end = k / end;
-        if ((is.read(b, start, end) != k)) {
+        if ((is.read(b, k * start, k / end) != k)) {
             for (int i = 0; i < b.length; i++) {
                 System.out.println((char) (b[i]));
             }
