@@ -3,9 +3,7 @@ package demo.demostrings;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
-import java.util.Arrays;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -46,7 +44,12 @@ public class StringHomeWork {
         //bufferedWrite("testHomeWork", "перевод строки в байты !!!!!");
         //printWrite("testHomeWork", "перевод строки в байты !!!!!+++++");
 
-        readStringAnyFormat();
+        //readStringAnyFormat();
+        try {
+            SequenceRead();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static boolean sumTicket(String number) {
@@ -174,48 +177,59 @@ public class StringHomeWork {
         }
     }
 
-    public static void printWrite(String fileName, String text){
+    public static void printWrite(String fileName, String text) {
         File file = new File(fileName);
-    try(PrintWriter writer = new PrintWriter(file)) {
-        writer.write(text);
-        writer.flush();
-    }catch (IOException ex) {
-        throw new RuntimeException(ex);
+        try (PrintWriter writer = new PrintWriter(file)) {
+            writer.write(text);
+            writer.flush();
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
     }
-}
 
-    public static void readStringAnyFormat(){
+    public static void readStringAnyFormat() {
         File file = new File("readString.txt");
+        StringBuilder sb = new StringBuilder();
         if (file.exists()) {
-            try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            try (BufferedReader br = new BufferedReader(new FileReader(file));
+
+            ) {
                 String line;
+                String dateRegex = "(^((2000|2400|2800|(19|2[0-9](0[48]|[2468][048]|[13579][26])))-02-29)|" +
+                        "(((19|2[0-9])[0-9]{2})-02-(0[1-9]|1[0-9]|2[0-8]))|(((19|2[0-9])[0-9]{2})-(0[13578]|" +
+                        "10|12)-(0[1-9]|[12][0-9]|3[01]))|(((19|2[0-9])[0-9]{2})-(0[469]|11)-(0[1-9]|[12][0-9]|30))T(2[0-3]|" +
+                        "[01][0-9]):([0-5][0-9]):([0-5][0-9])(\\.[0-9]+)?(Z|[-+][0-9]{2}:[0-9]{2})$)";
+                //String regex2 = "^([0-9]+){2,4}(;[A-Za-z]{3}|[0-9]{2})?;" + dateRegex + ";[A-Za-z0-9]*[0-9]{2,}[A-Za-z0-9]*?$"
+                String regex2 = "^(\\d{2,4})(?:;|^)((\\w{3}|\\d{2})(?:;|^))?" + dateRegex + "(?:;|^)([A-Za-z0-9]*[0-9]{2,}[A-Za-z0-9]*?)$";
                 String regex = "([0-9]+);([a-zA-Z]+);(^((2000|2400|2800|(19|2[0-9](0[48]|[2468][048]|[13579][26])))-02-29)" +
                         "|(((19|2[0-9])[0-9]{2})-02-(0[1-9]|1[0-9]|2[0-8]))|(((19|2[0-9])[0-9]{2})-(0[13578]|10|12)-(0[1-9]|" +
                         "[12][0-9]|3[01]))|(((19|2[0-9])[0-9]{2})-(0[469]|11)-(0[1-9]|[12][0-9]|30))T(2[0-3]|[01][0-9]):([0-5]" +
-                        "[0-9]):([0-5][0-9])(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})$);([0-9a-zA-Z]+)";
-                while (( line = br.readLine()) != null) {
-                    final Pattern pattern = Pattern.compile(regex, Pattern.MULTILINE);
-                    final Matcher matcher = pattern.matcher(line);
-                    if(matcher.find()) {
-                        String date = matcher.group(3);
-                        System.out.println(date);
-                        String firstGroup = matcher.group(1);
-                        System.out.println(firstGroup);
-                        String secondGroup = matcher.group(2);
-                        System.out.println(secondGroup);
-                        String lastGroup = matcher.group(4);
-                        System.out.println(lastGroup);
-                    }
+                        "[0-9]):([0-5][0-9])(\\\\.[0-9]+)?(Z|[-+][0-9]{2}:[0-9]{2})$);([0-9a-zA-Z]+)";
 
+
+                while ((line = br.readLine()) != null) {
+                    final Pattern pattern = Pattern.compile(regex2, Pattern.MULTILINE);
+                    final Matcher matcher = pattern.matcher(line);
+                    if (matcher.find()) {
+                        System.out.println(line);
+                        sb.append(line);
+                        sb.append(System.lineSeparator());
+                    }
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
-        else {
+            if (sb.length() > 0) {
+                try (FileWriter fWriter = new FileWriter("readStringCopy.txt", true)) {
+                    fWriter.write(sb.toString());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        } else {
             System.out.println("file doesn't exist");
         }
-}
+    }
 
 
     public static void readFile(String fileName) {
@@ -232,6 +246,26 @@ public class StringHomeWork {
             throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    public static void SequenceRead()throws IOException  {
+        File file = new File("readString.txt");
+        File file1 = new File("readStringCopy.txt");
+        File file2 = new File("Third.txt");
+        SequenceInputStream sis = null;
+        FileInputStream fs = new FileInputStream(file);
+             FileInputStream fs1 = new FileInputStream(file1);
+             FileInputStream fs2 = new FileInputStream(file2);
+        Vector<FileInputStream> vector = new Vector<FileInputStream>();
+        vector.add(fs);
+        vector.add(fs1);
+        vector.add(fs2);
+        Enumeration<FileInputStream> enu = vector.elements();
+        sis = new SequenceInputStream(enu);
+        int i=0;
+        while((i=sis.read())!=-1){
+            System.out.print((char)i);
         }
     }
 
