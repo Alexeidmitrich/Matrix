@@ -1,23 +1,20 @@
 package demo.demostrings;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Bank {
+public class Bank implements Serializable{
     String title;
     String address;
     Director director;
-    List <Person> personList = new ArrayList<>();
+    ArrayList<Person> people = new ArrayList<Person>();
 
-    public Bank(String title, String address, Director director, List<Person> personList) {
+    public Bank(String title, String address, Director director, ArrayList<Person> people) {
         this.title = title;
         this.address = address;
         this.director = director;
-        this.personList = personList;
+        this.people = people;
     }
 
     public Bank(String title, String address, Director director) {
@@ -31,25 +28,34 @@ public class Bank {
         this.address = address;
     }
 
-    public static void main(String[] args) {
+    @Override
+    public String toString() {
+        return "Bank{" +
+                "title='" + title + '\'' +
+                ", address='" + address + '\'' +
+                ", director=" + director +
+                ", people=" + people +
+                '}';
+    }
+
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
         Director director = new Director("Ivan", "Gorshkov");
-        List<Person> personList = new ArrayList<>();
-        Person per = new Person("Ivan", "Pupkin", 30000);
-        Person per1 = new Person("Ivans", "Pupkinis", 45000);
-        personList.add(per);
-        personList.add(per1);
-        Bank bank = new Bank("Opel", "Sankt-Petersburg", director, personList);
-        try {
-            FileOutputStream fos = new FileOutputStream("BankObject.ser");
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
+        ArrayList<Person> people = new ArrayList<Person>();
+        people.add(new Person("Ivan", "Pupkin", 30000));
+        people.add(new Person("Ivans", "Pupkinis", 45000));
+        Bank bank = new Bank("Opel", "Sankt-Petersburg", director, people);
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("BankObject.ser"));
             oos.writeObject(bank);
+            //oos.writeObject(people);
             System.out.println("Done");
             oos.close();
-            fos.close();
-        } catch (
-                IOException e) {
-            e.printStackTrace();
-        }
+
+        ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("BankObject.ser"));
+        bank = (Bank) objectInputStream.readObject();
+        //people = (ArrayList<Person>) objectInputStream.readObject();
+        System.out.println(bank);
+        //System.out.println(people);
+        objectInputStream.close();
     }
 }
 
@@ -60,6 +66,14 @@ public class Bank {
         public Director(String firstName, String secondName) {
             this.firstName = firstName;
             this.secondName = secondName;
+        }
+
+        @Override
+        public String toString() {
+            return "Director{" +
+                    "firstName='" + firstName + '\'' +
+                    ", secondName='" + secondName + '\'' +
+                    '}';
         }
     }
 
@@ -72,6 +86,15 @@ public class Bank {
             this.firstName = firstName;
             this.secondName = secondName;
             this.salary = salary;
+        }
+
+        @Override
+        public String toString() {
+            return "Person{" +
+                    "firstName='" + firstName + '\'' +
+                    ", secondName='" + secondName + '\'' +
+                    ", salary=" + salary +
+                    '}';
         }
     }
 
